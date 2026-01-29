@@ -6,7 +6,7 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:53:38 by dteruya           #+#    #+#             */
-/*   Updated: 2026/01/28 18:08:16 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/01/29 13:52:10 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,6 @@ int main(int argc, char **argv)
 		return 1;
 
 	std::string input = argv[1];
+	input.a();
+	return 0;
 }
