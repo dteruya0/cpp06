@@ -6,7 +6,7 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:53:38 by dteruya           #+#    #+#             */
-/*   Updated: 2026/01/29 13:52:10 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/01/30 16:57:58 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 int main(int argc, char **argv)
 {
 	if (argc != 2)
+	{
+		std::cout << "Error! Invalid argument count!" << std::endl;
 		return 1;
-
-	std::string input = argv[1];
-	input.a();
+	}
+	ScalarConverter::convert(argv[1]);
 	return 0;
 }

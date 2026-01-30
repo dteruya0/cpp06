@@ -1,7 +1,7 @@
-AME = exec
+NAME = exec
 
 SRC = main.cpp \
-		ScalarConverter.cpp \
+		ScalarConverter.cpp\
 
 OBJ_F = obj/
 OBJ = $(addprefix $(OBJ_F), $(SRC:.cpp=.o))
