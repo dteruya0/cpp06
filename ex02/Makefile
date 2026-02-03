@@ -1,7 +1,7 @@
 NAME = exec
 
 SRC = main.cpp \
-		Serializer.cpp\
+		Base.cpp\
 
 OBJ_F = obj/
 OBJ = $(addprefix $(OBJ_F), $(SRC:.cpp=.o))
