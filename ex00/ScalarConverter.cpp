@@ -6,7 +6,7 @@
 /*   By: dteruya <dteruya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:43:26 by dteruya           #+#    #+#             */
-/*   Updated: 2026/01/30 17:04:56 by dteruya          ###   ########.fr       */
+/*   Updated: 2026/02/02 12:34:29 by dteruya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,8 @@ void ScalarConverter::convertFromChar(std::string s)
 
 	std::cout << "char: '" << s << "'" << std::endl;
 	std::cout << "int: " << static_cast<int>(s[0]) << std::endl;
-	std::cout << "float: " << static_cast<float>(s[0]) << std::endl;
-	std::cout << "double: " << static_cast<double>(s[0]) << std::endl;
+	std::cout << "float: " << static_cast<float>(s[0]) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(s[0]) << ".0" << std::endl;
 }
 
 
@@ -235,9 +235,9 @@ void ScalarConverter::convertFromInt(std::string s)
 	std::cout << "double: " << static_cast<double>(value) << ".0\n";
 }
 
-void ScalarConverter::convertFromFloat(std::string s)
+void ScalarConverter::convertFromFloat(std::string to_convert)
 {
-	float value = atof(s.c_str());
+	float value = atof(to_convert.c_str());
 
 	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
 		std::cout << "char: impossible" << std::endl;
@@ -249,30 +249,45 @@ void ScalarConverter::convertFromFloat(std::string s)
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
 	else
 		std::cout << "int: impossible" << std::endl;
-	std::cout << "float: " << value << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(value) << std::endl;
+	if (value == static_cast<int>(value))
+		std::cout << "float: " << value << ".0f\n";
+	else
+		std::cout << "float: " << value << "f\n";
+	if (value == static_cast<int>(value))
+		std::cout << "double: " << static_cast<double>(value) << ".0\n";
+	else
+		std::cout << "double: " << static_cast<double>(value) << "\n";
 }
 
-void ScalarConverter::convertFromDouble(std::string s)
+void ScalarConverter::convertFromDouble(std::string to_convert)
 {
-	double	value = atof(s.c_str());
-	
+	double value = std::atof(to_convert.c_str());
+
 	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
-		std::cout << "char: impossible" << std::endl;
+		std::cout << "char: impossible\n";
 	else if (isprint(static_cast<unsigned char>(value)))
-		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(value) << "'\n";
 	else
-		std::cout << "char: " << "Non displayable" << std::endl;
-	if(value < std::numeric_limits<int>::max() && value > std::numeric_limits<int>::min())
-		std::cout << "int: " << static_cast<int>(value) << std::endl;
+		std::cout << "char: Non displayable\n";
+	if (value >= std::numeric_limits<int>::min() && value <= std::numeric_limits<int>::max())
+		std::cout << "int: " << static_cast<int>(value) << "\n";
 	else
-		std::cout << "int: impossible" << std::endl;
-	if (value < std::numeric_limits<float>::max() && value > -std::numeric_limits<float>::max())
-		std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+		std::cout << "int: impossible\n";
+	if (value >= -std::numeric_limits<float>::max() && value <= std::numeric_limits<float>::max())
+	{
+		if (value == static_cast<int>(value))
+			std::cout << "float: " << static_cast<float>(value) << ".0f\n";
+		else
+			std::cout << "float: " << static_cast<float>(value) << "f\n";
+	}
 	else
-		std::cout << "float: impossible" << std::endl;
-	std::cout << "double: " << static_cast<double>(value) << std::endl;
+		std::cout << "float: impossible\n";
+	if (value == static_cast<int>(value))
+		std::cout << "double: " << value << ".0\n";
+	else
+		std::cout << "double: " << value << "\n";
 }
+
 
 void ScalarConverter::printImpossible(void)
 {
